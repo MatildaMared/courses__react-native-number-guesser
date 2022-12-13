@@ -26,7 +26,6 @@ function PrimaryButton(props) {
 const styles = StyleSheet.create({
 	outerContainer: {
 		borderRadius: 8,
-		flex: 1,
 		margin: 4,
 		overflow: "hidden",
 	},
