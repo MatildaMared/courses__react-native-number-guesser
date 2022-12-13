@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { TextInput, View, StyleSheet, Alert, Text } from "react-native";
+import Card from "../components/Card";
 import PrimaryButton from "../components/PrimaryButton";
+import Title from "../components/Title";
 import Colors from "../constants/colors";
 
 function StartGameScreen(props) {
@@ -30,41 +32,37 @@ function StartGameScreen(props) {
 	}
 
 	return (
-		<View style={styles.inputContainer}>
-			<TextInput
-				style={styles.numberInput}
-				maxLength={2}
-				keyboardType="number-pad"
-				autoCapitalize="none"
-				autoCorrect={false}
-				value={number}
-				onChangeText={numberChangeHandler}
-			/>
-			<View style={styles.buttonsContainer}>
-				<View style={styles.buttonContainer}>
-					<PrimaryButton>Reset</PrimaryButton>
+		<View style={styles.rootContainer}>
+			<Title>Guess My Number</Title>
+			<Card>
+				<Text style={styles.text}>Enter a number between 1 and 99</Text>
+				<TextInput
+					style={styles.numberInput}
+					maxLength={2}
+					keyboardType="number-pad"
+					autoCapitalize="none"
+					autoCorrect={false}
+					value={number}
+					onChangeText={numberChangeHandler}
+				/>
+				<View style={styles.buttonsContainer}>
+					<View style={styles.buttonContainer}>
+						<PrimaryButton>Reset</PrimaryButton>
+					</View>
+					<View style={styles.buttonContainer}>
+						<PrimaryButton onPress={confirmHandler}>Start Game</PrimaryButton>
+					</View>
 				</View>
-				<View style={styles.buttonContainer}>
-					<PrimaryButton onPress={confirmHandler}>Start Game</PrimaryButton>
-				</View>
-			</View>
+			</Card>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	inputContainer: {
+	rootContainer: {
+		flex: 1,
 		padding: 16,
-		marginHorizontal: 24,
-		borderRadius: 8,
 		marginTop: 48,
-		backgroundColor: Colors.primary700,
-		elevation: 8,
-		shadowColor: "#000",
-		shadowOffset: { width: 2, height: 2 },
-		shadowOpacity: 0.2,
-		shadowRadius: 6,
-		alignItems: "center",
 	},
 	numberInput: {
 		height: 48,
@@ -83,6 +81,9 @@ const styles = StyleSheet.create({
 	},
 	buttonContainer: {
 		flex: 1,
+	},
+	text: {
+		color: Colors.secondary400,
 	},
 });
 

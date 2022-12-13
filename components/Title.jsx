@@ -1,20 +1,26 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/colors";
 
 function Title(props) {
-	return <Text style={styles.title}>{props.children}</Text>;
+	return (
+		<View style={styles.container}>
+			<Text style={styles.text}>{props.children}</Text>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-	title: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: Colors.secondary400,
-		textAlign: "center",
+	container: {
 		padding: 16,
 		backgroundColor: "rgba(211, 179, 74, 0.15)",
 		borderRadius: 8,
 		overflow: "hidden",
+	},
+	text: {
+		textAlign: "center",
+		color: Colors.secondary400,
+		fontSize: 18,
+		fontWeight: "bold",
 	},
 });
 
