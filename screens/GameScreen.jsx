@@ -33,7 +33,7 @@ function GameScreen(props) {
 	const initialGuess = generateRandomBetween(1, 100, userNumber);
 	const [currentGuess, setCurrentGuess] = useState(initialGuess);
 	const [rounds, setRounds] = useState([initialGuess]);
-	const { width, height } = useWindowDimensions();
+	const { width } = useWindowDimensions();
 
 	useEffect(() => {
 		minBoundary = 1;
