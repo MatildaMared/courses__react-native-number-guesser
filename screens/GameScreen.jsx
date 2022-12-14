@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: Colors.secondary400,
+		fontFamily: "open-sans",
 	},
 });
 

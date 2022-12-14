@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		textAlign: "center",
+		fontFamily: "open-sans-bold",
 		color: Colors.secondary400,
 		fontSize: 18,
-		fontWeight: "bold",
 	},
 });
 

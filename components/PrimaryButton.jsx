@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 		color: "#FFF",
 		textAlign: "center",
 		alignItems: "center",
+		fontFamily: "open-sans",
 	},
 	pressed: {
 		opacity: 0.5,
