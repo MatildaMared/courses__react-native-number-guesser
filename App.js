@@ -40,8 +40,9 @@ export default function App() {
 		setGameIsRunning(true);
 	}
 
-	function gameOverHandler() {
+	function gameOverHandler(numberOfRounds) {
 		setGameIsRunning(false);
+		setNumberOfRounds(numberOfRounds);
 	}
 
 	function restartGame() {

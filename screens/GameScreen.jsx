@@ -34,7 +34,7 @@ function GameScreen(props) {
 
 	useEffect(() => {
 		if (currentGuess === userNumber) {
-			gameOverHandler();
+			gameOverHandler(rounds.length);
 		}
 	}, [currentGuess, userNumber, gameOverHandler]);
 
