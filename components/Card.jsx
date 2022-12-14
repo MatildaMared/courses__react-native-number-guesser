@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
 	container: {
 		padding: 16,
 		marginTop: 16,
+		marginBottom: 16,
 		borderRadius: 8,
 		backgroundColor: Colors.primary700,
 		shadowColor: "#000",

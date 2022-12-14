@@ -11,6 +11,7 @@ import * as SplashScreen from "expo-splash-screen";
 export default function App() {
 	const [userNumber, setUserNumber] = useState();
 	const [gameIsRunning, setGameIsRunning] = useState(false);
+	const [numberOfRounds, setNumberOfRounds] = useState(0);
 
 	const [fontsLoaded] = useFonts({
 		"open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -43,6 +44,11 @@ export default function App() {
 		setGameIsRunning(false);
 	}
 
+	function restartGame() {
+		setUserNumber(null);
+		setNumberOfRounds(0);
+	}
+
 	let screen = <StartGameScreen onSelectNumber={selectedNumberHandler} />;
 
 	if (userNumber) {
@@ -52,7 +58,13 @@ export default function App() {
 	}
 
 	if (!gameIsRunning && userNumber) {
-		screen = <GameOverScreen />;
+		screen = (
+			<GameOverScreen
+				userNumber={userNumber}
+				numberOfRounds={numberOfRounds}
+				onRestart={restartGame}
+			/>
+		);
 	}
 
 	return (
