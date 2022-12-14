@@ -5,6 +5,7 @@ import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
+import { Feather } from "@expo/vector-icons";
 
 function generateRandomBetween(min, max, exclude) {
 	const random = Math.floor(Math.random() * (max - min)) + min;
@@ -64,10 +65,10 @@ function GameScreen(props) {
 				<NumberContainer>{currentGuess}</NumberContainer>
 				<View style={styles.buttonsContainer}>
 					<PrimaryButton onPress={() => nextGuessHandler("lower")}>
-						Lower
+						<Feather name="minus" size={16} color="white" />
 					</PrimaryButton>
 					<PrimaryButton onPress={() => nextGuessHandler("higher")}>
-						Higher
+						<Feather name="plus" size={16} color="white" />
 					</PrimaryButton>
 				</View>
 			</Card>
