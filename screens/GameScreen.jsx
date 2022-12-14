@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Alert, FlatList } from "react-native";
+import {
+	Text,
+	View,
+	StyleSheet,
+	Alert,
+	FlatList,
+	useWindowDimensions,
+} from "react-native";
 import Card from "../components/Card";
 import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
@@ -26,6 +33,7 @@ function GameScreen(props) {
 	const initialGuess = generateRandomBetween(1, 100, userNumber);
 	const [currentGuess, setCurrentGuess] = useState(initialGuess);
 	const [rounds, setRounds] = useState([initialGuess]);
+	const { width, height } = useWindowDimensions();
 
 	useEffect(() => {
 		minBoundary = 1;
@@ -65,21 +73,42 @@ function GameScreen(props) {
 		setRounds((currentRounds) => [newNumber, ...currentRounds]);
 	}
 
-	return (
-		<View style={styles.screen}>
-			<Title>Opponent's Guess</Title>
-			<Card>
-				<Text style={styles.text}>Higher or lower?</Text>
-				<NumberContainer>{currentGuess}</NumberContainer>
-				<View style={styles.buttonsContainer}>
+	let content = (
+		<Card>
+			<Text style={styles.text}>Higher or lower?</Text>
+			<NumberContainer>{currentGuess}</NumberContainer>
+			<View style={styles.buttonsContainer}>
+				<PrimaryButton onPress={() => nextGuessHandler("lower")}>
+					<Feather name="minus" size={16} color="white" />
+				</PrimaryButton>
+				<PrimaryButton onPress={() => nextGuessHandler("higher")}>
+					<Feather name="plus" size={16} color="white" />
+				</PrimaryButton>
+			</View>
+		</Card>
+	);
+
+	if (width > 500) {
+		content = (
+			<>
+				<Text style={[styles.text, { marginTop: 16 }]}>Higher or lower?</Text>
+				<View style={styles.buttonsContainerWide}>
 					<PrimaryButton onPress={() => nextGuessHandler("lower")}>
 						<Feather name="minus" size={16} color="white" />
 					</PrimaryButton>
+					<NumberContainer>{currentGuess}</NumberContainer>
 					<PrimaryButton onPress={() => nextGuessHandler("higher")}>
 						<Feather name="plus" size={16} color="white" />
 					</PrimaryButton>
 				</View>
-			</Card>
+			</>
+		);
+	}
+
+	return (
+		<View style={styles.screen}>
+			<Title>Opponent's Guess</Title>
+			{content}
 			<FlatList
 				data={rounds}
 				keyExtractor={(item) => item.toString()}
@@ -109,6 +138,12 @@ const styles = StyleSheet.create({
 	text: {
 		color: Colors.secondary400,
 		fontFamily: "open-sans",
+		textAlign: "center",
+	},
+	buttonsContainerWide: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
 	},
 });
 
